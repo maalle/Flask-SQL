@@ -1,0 +1,35 @@
+<table>
+    <thead>
+        <th> # </th> <th> Nimi </th> <th> Hinta </th>
+    </thead>
+   
+    {% for entry in entries %} <tr>
+        <td> {{ entry[ 0] }} </td> <td> {{ entry[ 1] }} </td> <td> {{ entry[ 2] }} </td>
+        <td>
+            <input
+                type = "button"
+                value = "Remove"
+                name = {{ entry[ 0] }}
+                onclick = "location.href = 'remove/'+name;"
+            > 
+        </td>
+    </tr> {% endfor %}
+    
+    <td> </td>    
+    <td> <input type = "text" id = "article"> </td>
+    <td> <input type = "text" id = "price"> </td>
+    <td>
+        <input
+            type = "button" value = "Add"
+            onclick = "location.href = 'add' + getArticle() + '/' + getPrice();"
+        >
+        <script>
+            function getArticle() {
+                return document.getElementById( "article").value;
+            }
+            function getPrice() {
+                return document.getElementById( "price").value;
+            }
+        </script>
+    </td>
+</table>
