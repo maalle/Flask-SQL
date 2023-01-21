@@ -1,0 +1,62 @@
+<!DOCTYPE html> <html lang="en">
+<style> .right { text-align: right; } </style>
+
+<table>
+    <thead> <th> Id </th> <th> Article </th> <th> Price </th> </thead>
+
+    {% for item in data %}
+        <tr>
+            {% set id = item[ 0] %} {% set article = item[ 1] %} {% set price = item[ 2] %}
+            <td> {{ id }} </td>
+
+            <form action = '/' method = 'POST'>
+                <input type = 'hidden' name = 'id' value = {{ id }}>
+
+                {% if mode == id %} <!-- Modify mode, the subjected item -->
+                    <td> <input name = 'article' type = 'text' value = {{ article }}> </td>
+                    <td> <input name = 'price' type = 'text' value = {{ price }}> </td>
+                    <td> <button type = 'submit' name = 'action' value = 'complete modify'> OK </button> </td>
+                    <td> <button type = 'submit' name = 'action' value = 'cancel'> Cancel </button> </td>
+                {% else %}
+                    <td> {{ article }} </td>
+                    <td class = 'right'>
+                        {{ '%.2f' | format( price | float) }} €
+                    </td>
+
+                    {% if mode == 'view' %}
+                        <td> <button type = 'submit' name = 'action' value = 'enter modify'> Modify </button> </td>
+                        <td> <button type = 'submit' name = 'action' value = 'delete'> Delete </button> </td>
+                    {% else %} <!-- (Insert mode) OR (Modify mode, other item) -->
+                        <td> <button disabled> Modify </button> </td>
+                        <td> <button disabled> Delete </button> </td>
+                    {% endif %}
+                {% endif %}
+            </form>
+        </tr>
+    {% endfor %}
+
+    <tr>
+        <td> </td>
+
+        <form action = '/' method = 'POST'>
+            {% if mode == 'insert' %}
+                <td> <input type = 'text' name = 'article'> </td>
+                <td> <input type = 'text' name = 'price'> </td>
+                <td> <button type = 'submit' name = 'action' value = 'complete insert'> OK </button> </td>
+                <td> <button type = 'submit' name = 'action' value = 'cancel'> Cancel </button> </td>
+            {% else %}
+                <td>
+                    {% if mode == 'view' %}
+                        <button type = 'submit' name = 'action' value = 'enter insert'> Insert new item </button>
+                    {% else %}
+                        <button disabled> Insert new item </button> <!-- Being in the modify mode. -->
+                    {% endif %}
+                </td>
+
+                <td> </td>
+                <td> <button disabled> OK </button> </td>
+                <td> <button disabled> Cancel </button> </td>
+            {% endif %}
+        </form>
+    </tr>
+</table>
