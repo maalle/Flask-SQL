@@ -59,4 +59,10 @@
             {% endif %}
         </form>
     </tr>
+
+    {% for item in feedback %}
+        <tr>
+            <td colspan = 5 style = 'color: rgb( 255, 0, 0)'> {{ item }} </td>
+        </tr>
+    {% endfor %}
 </table>
