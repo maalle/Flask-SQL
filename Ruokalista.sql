@@ -1,7 +1,9 @@
-CREATE TABLE ruokalista(id integer private key, nimi string, hinta
-decimal(5, 2));
+CREATE TABLE IF NOT EXISTS RUOKALISTA(id INTEGER PRIMARY KEY, nimi, hinta);
+DELETE FROM RUOKALISTA;
 
-INSERT INTO ruokalista(id, nimi, hinta) VALUES(1, 'Kaurapuuro', 2.50);
-INSERT INTO ruokalista(id, nimi, hinta) VALUES(2, 'Pyttipannu', 5.50);
-INSERT INTO ruokalista(id, nimi, hinta) VALUES(3, 'Kaalikääryleet', 10.90);
-INSERT INTO ruokalista(id, nimi, hinta) VALUES(4, 'Lohikeitto', 8.90);
+INSERT INTO RUOKALISTA(nimi, hinta) VALUES('Kaurapuuro', 2.50);
+INSERT INTO RUOKALISTA(nimi, hinta) VALUES('Pyttipannu', 5.50);
+INSERT INTO RUOKALISTA(nimi, hinta) VALUES('Kaalikääryleet', 10.90);
+INSERT INTO RUOKALISTA(nimi, hinta) VALUES('Lohikeitto', 8.90);
+INSERT INTO RUOKALISTA(nimi, hinta) VALUES('Härän sisäfileepihvi', 25.50);
+INSERT INTO RUOKALISTA(nimi, hinta) VALUES('Porsaanleike', 17.80);
