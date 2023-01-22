@@ -40,7 +40,7 @@ def modify_check( id, article):
         cur = con.cursor()
 
         for entry in cur.execute( "SELECT id, nimi FROM ruokalista"):
-            if (entry[ 0] != id) & (str.lower( entry[ 1]) == str.lower( article)):
+            if (entry[ 0] != int( id)) & (str.lower( entry[ 1]) == str.lower( article)):
                 ok = False; break
 
     return ok
